@@ -11,6 +11,7 @@ const userRouter = require('./routes/user.routes');
 //////// Conexión MongoDB ////////
 require('./database');
 
+app.use(express.json());
 
 ////////////// Rutas //////////////  
 app.use('/api/productos', productRouter);

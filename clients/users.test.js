@@ -20,13 +20,13 @@ describe('Test API - Usuarios', () => {
       let user = {nombre:'User Test', email:'usertest@gmail.com', foto:'www.foto.com', password:'Mipassword'}
       let res = await request.post('/api/users').send(user);
       expect(res.statusCode).to.equal(200);
-      //expect(res.body).to.includes.keys('status', 'result');
+      expect(res.body).to.includes.keys('status', 'result');
     })
   })
 
   describe('GET api/users/id', () => {
     it('La petición debería retornar un user por ID', async () => {
-      let res = await request.get('/api/productos/63dbce26836d503eb61293fa');      
+      let res = await request.get('/api/users/63e0f4e13893022d9eede62b');      
       expect(res.statusCode).to.equal(200);
     })
   })

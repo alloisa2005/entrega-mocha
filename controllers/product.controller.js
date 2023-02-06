@@ -23,6 +23,8 @@ class ProductController  {
     try {
 
       let result = await ProductModel.findById(id);
+      if(!result) return res.status(400).send({status:'ERROR', msg: 'Producto no existe'});      
+
       return res.status(200).send({status:'OK', result});      
 
     } catch (error) {
@@ -54,6 +56,9 @@ class ProductController  {
     try {      
 
       let result = await ProductModel.findByIdAndDelete(id);
+
+      if(!result) return res.status(400).send({status:'ERROR', msg: 'Producto no existe'});
+
       return res.status(200).send({status:'OK', result});
 
     } catch (error) {

@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon app.js",
-    "test": "mocha clients/products.test.js"
+    "test-prod": "mocha --timeout 10000 clients/products.test.js",
+    "test-user": "mocha --timeout 10000 clients/users.test.js"
   },
   "keywords": [],
   "author": "",

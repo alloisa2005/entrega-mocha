@@ -22,8 +22,10 @@ class UserController  {
 
     try {
 
-      let result = await UserModel.findById(id);
-      return res.status(200).send({status:'OK', result});      
+      let user = await UserModel.findById(id);
+      if(!user) return res.status(400).send({status:'ERROR', msg: 'User not found'});      
+      
+      return res.status(200).send({status:'OK', user});      
 
     } catch (error) {
 
@@ -39,6 +41,8 @@ class UserController  {
       let user = {nombre, password, email, foto };      
 
       let result = await UserModel.create(user);
+      console.log(result);
+      
       return res.status(200).send({status:'OK', result});
 
     } catch (error) {

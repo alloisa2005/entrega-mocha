@@ -18,21 +18,31 @@ const resolvers = {
     getUserById: async (parent, args) => {
       let user = await User.findById(args.id) 
       return user
-    }
+    }    
   },
-  Mutation: {
+  Mutation: {    
+    createUser: async (parent, args, context, info) => {
+      const {nombre, password, foto, email } = args;
+      let user = new User({nombre, password, foto, email})
+      await user.save()
+      return user;
+    },
+    deleteUser: async (parent, args, context, info) => {
+      const { id } = args;      
+      let user = await User.findByIdAndDelete(id);
+      return user;
+    },
     createProduct: async (parent, args, context, info) => {
       const {nombre, descripcion, foto, precio } = args;
       let prod = new Product({nombre, descripcion, foto, precio})
       await prod.save()
       return prod;
     },
-    createUser: async (parent, args, context, info) => {
-      const {nombre, password, foto, email } = args;
-      let user = new User({nombre, password, foto, email})
-      await user.save()
-      return user;
-    }
+    deleteProduct: async (parent, args, context, info) => {
+      const { id } = args;      
+      let prod = await Product.findByIdAndDelete(id);
+      return prod;
+    },
   }
 };
 

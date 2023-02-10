@@ -33,3 +33,5 @@ miApollo.start()
     miApollo.applyMiddleware({ app })
   });
 
+
+  /* updateProduct(id: String, productInput: ProductInput ): Product */

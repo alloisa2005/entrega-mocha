@@ -27,6 +27,11 @@ const resolvers = {
       await user.save()
       return user;
     },
+    updateUser: async (parent, args, context, info) => {
+      let { id, userInput } = args;
+      let user = await User.findByIdAndUpdate(id, userInput, {new: true});
+      return user;
+    },
     deleteUser: async (parent, args, context, info) => {
       const { id } = args;      
       let user = await User.findByIdAndDelete(id);
@@ -42,7 +47,12 @@ const resolvers = {
       const { id } = args;      
       let prod = await Product.findByIdAndDelete(id);
       return prod;
-    },
+    },    
+    updateProduct: async (parent, args, context, info) => {
+      let { id, productInput } = args;
+      let prod = await Product.findByIdAndUpdate(id, productInput, {new: true});
+      return prod;
+    }
   }
 };
 
